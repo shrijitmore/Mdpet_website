@@ -176,7 +176,7 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#0055CC]">
+                <Button size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0055CC]">
                   <MessageCircle className="mr-2" size={20} />
                   WhatsApp Us
                 </Button>
