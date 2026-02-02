@@ -510,7 +510,7 @@ export default function Home() {
                       </Button>
                     </Link>
                     <a href={`tel:${companyInfo.phone}`}>
-                      <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#0055CC]">
+                      <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0055CC]">
                         Call: {companyInfo.phone}
                       </Button>
                     </a>
