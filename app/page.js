@@ -150,7 +150,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/contact" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 backdrop-blur border-white text-white hover:bg-white hover:text-[#0055CC] px-6 md:px-8 py-5 md:py-6 text-base md:text-lg">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent backdrop-blur border-2 border-white text-white hover:bg-white hover:text-[#0055CC] px-6 md:px-8 py-5 md:py-6 text-base md:text-lg">
                     Get Free Quote
                   </Button>
                 </Link>
