@@ -177,7 +177,7 @@ export default function ProductsPage({ searchParams }) {
                   </Button>
                 </Link>
                 <Link href="/solutions">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#0055CC]">
+                  <Button size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#0055CC]">
                     Explore Solutions
                   </Button>
                 </Link>
