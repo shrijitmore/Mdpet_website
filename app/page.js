@@ -15,7 +15,7 @@ import ProductSlider from '@/components/ProductSlider'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ArrowRight, CheckCircle, Factory, Globe, Award, Users, Play, ChevronRight, Zap, Shield, Clock, Headphones, ChevronDown } from 'lucide-react'
+import { ArrowRight, CheckCircle, Factory, Globe, Award, Users, Play, ChevronDown, Zap, Shield, Headphones } from 'lucide-react'
 import { companyInfo, testimonials } from '@/lib/data'
 
 export default function Home() {
@@ -26,8 +26,7 @@ export default function Home() {
   })
   
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0])
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.2])
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150])
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
 
   const [videoLoaded, setVideoLoaded] = useState(false)
   
@@ -67,21 +66,21 @@ export default function Home() {
             </video>
             
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0055CC]/95 via-[#0055CC]/80 to-[#003d99]/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0055CC]/95 via-[#0055CC]/85 to-[#003d99]/75" />
             
-            {/* Animated particles/dots */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(20)].map((_, i) => (
+            {/* Animated particles */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {[...Array(15)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-2 h-2 bg-white/20 rounded-full"
+                  className="absolute w-1 h-1 md:w-2 md:h-2 bg-white/30 rounded-full"
                   style={{
                     left: `${Math.random() * 100}%`,
                     top: `${Math.random() * 100}%`,
                   }}
                   animate={{
-                    y: [0, -100, 0],
-                    opacity: [0, 1, 0],
+                    y: [0, -80, 0],
+                    opacity: [0, 0.8, 0],
                   }}
                   transition={{
                     duration: 3 + Math.random() * 2,
@@ -95,150 +94,128 @@ export default function Home() {
           
           {/* Hero Content */}
           <motion.div 
-            className="container mx-auto px-4 relative z-10 pt-20"
-            style={{ opacity: heroOpacity, y: heroY }}
+            className="container mx-auto px-4 relative z-10 py-20 md:py-24 lg:py-32"
+            style={{ opacity: heroOpacity }}
           >
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Badge className="bg-[#FF7F00] text-white mb-6 text-sm px-4 py-2 inline-flex items-center gap-2">
-                    <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                    25+ Years of Excellence
-                  </Badge>
-                </motion.div>
-                
-                <motion.h1 
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                >
-                  Complete{' '}
-                  <span className="text-[#FF7F00]">PET Bottle</span>{' '}
-                  Manufacturing Solutions
-                </motion.h1>
-                
-                <motion.p 
-                  className="text-xl text-gray-200 mb-8 leading-relaxed"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  India's leading manufacturer of PET Stretch Blow Molding Machines. 
-                  From semi-automatic to servo-driven systems, we deliver precision-engineered 
-                  solutions for every scale of production.
-                </motion.p>
-                
-                <motion.div 
-                  className="flex flex-wrap gap-4"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  <Link href="/products">
-                    <Button size="lg" className="bg-[#FF7F00] hover:bg-[#e67300] text-white px-8 py-6 text-lg group">
-                      Explore Products
-                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur border-white text-white hover:bg-white hover:text-[#0055CC] px-8 py-6 text-lg">
-                      Get Free Quote
-                    </Button>
-                  </Link>
-                </motion.div>
-
-                {/* Quick Stats */}
-                <motion.div 
-                  className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  {[
-                    { value: 25, suffix: '+', label: 'Years' },
-                    { value: 2500, suffix: '+', label: 'Machines' },
-                    { value: 45, suffix: '+', label: 'Countries' },
-                    { value: 500, suffix: '+', label: 'Clients' }
-                  ].map((stat, index) => (
-                    <div key={index} className="text-center">
-                      <div className="text-3xl md:text-4xl font-bold text-[#FF7F00]">
-                        <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                      </div>
-                      <div className="text-white/80 text-sm mt-1">{stat.label}</div>
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-
-              {/* Right side - Floating Card */}
+            <div className="max-w-4xl mx-auto lg:mx-0">
+              {/* Badge */}
               <motion.div
-                className="hidden lg:block"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-6"
               >
-                <motion.div
-                  className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <div className="text-white text-center">
-                    <Play className="w-16 h-16 mx-auto mb-4 text-[#FF7F00]" />
-                    <h3 className="text-xl font-bold mb-2">Watch Our Machines</h3>
-                    <p className="text-gray-300 text-sm mb-4">See precision engineering in action</p>
-                    <a 
-                      href="https://www.youtube.com/watch?v=NPHnMvt4Cbs" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <Button className="bg-[#FF7F00] hover:bg-[#e67300] text-white">
-                        Play Video
-                      </Button>
-                    </a>
-                  </div>
-                </motion.div>
+                <Badge className="bg-[#FF7F00] text-white text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2 inline-flex items-center gap-2">
+                  <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                  25+ Years of Excellence
+                </Badge>
+              </motion.div>
+              
+              {/* Headline */}
+              <motion.h1 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                Complete{' '}
+                <span className="text-[#FF7F00] inline-block">PET Bottle</span>
+                <br className="hidden sm:block" />
+                <span className="block sm:inline"> Manufacturing Solutions</span>
+              </motion.h1>
+              
+              {/* Description */}
+              <motion.p 
+                className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 md:mb-8 leading-relaxed max-w-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                India's leading manufacturer of PET Stretch Blow Molding Machines. 
+                From semi-automatic to servo-driven systems, we deliver precision-engineered 
+                solutions for every scale of production.
+              </motion.p>
+              
+              {/* CTA Buttons */}
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 md:mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <Link href="/products" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-[#FF7F00] hover:bg-[#e67300] text-white px-6 md:px-8 py-5 md:py-6 text-base md:text-lg group">
+                    Explore Products
+                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                  </Button>
+                </Link>
+                <Link href="/contact" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 backdrop-blur border-white text-white hover:bg-white hover:text-[#0055CC] px-6 md:px-8 py-5 md:py-6 text-base md:text-lg">
+                    Get Free Quote
+                  </Button>
+                </Link>
+              </motion.div>
+
+              {/* Stats Grid */}
+              <motion.div 
+                className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                {[
+                  { value: 25, suffix: '+', label: 'Years Experience' },
+                  { value: 2500, suffix: '+', label: 'Machines Installed' },
+                  { value: 45, suffix: '+', label: 'Countries Served' },
+                  { value: 500, suffix: '+', label: 'Happy Clients' }
+                ].map((stat, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-5 text-center border border-white/20"
+                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.15)' }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#FF7F00]">
+                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                    </div>
+                    <div className="text-white/80 text-xs md:text-sm mt-1">{stat.label}</div>
+                  </motion.div>
+                ))}
               </motion.div>
             </div>
           </motion.div>
           
-          {/* Scroll Indicator */}
+          {/* Scroll Indicator - Hidden on mobile */}
           <motion.div 
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+            className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
-            <div className="flex flex-col items-center text-white/60">
-              <span className="text-sm mb-2">Scroll to explore</span>
-              <ChevronDown size={24} />
-            </div>
+            <span className="text-white/60 text-sm mb-2">Scroll to explore</span>
+            <ChevronDown className="text-white/60" size={24} />
           </motion.div>
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-24 bg-white">
+        <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
               <ScrollReveal animation="fadeRight">
                 <div>
                   <Badge variant="outline" className="mb-4 border-[#FF7F00] text-[#FF7F00]">
                     Why MD PET
                   </Badge>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                     What Makes MD PET the{' '}
                     <span className="text-[#0055CC]">Best Choice?</span>
                   </h2>
-                  <p className="text-gray-600 mb-8 text-lg">
+                  <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
                     With over 25 years of expertise in PET blow molding technology, 
                     we deliver precision-engineered machines that set industry standards 
                     for performance, efficiency, and reliability.
                   </p>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                     {[
                       { icon: Factory, title: 'Industry Expertise', desc: '25+ years of manufacturing excellence', delay: 0 },
                       { icon: Zap, title: 'Advanced Technology', desc: 'Latest servo-driven systems', delay: 0.1 },
@@ -247,15 +224,15 @@ export default function Home() {
                     ].map((item, index) => (
                       <ScrollReveal key={index} animation="fadeUp" delay={item.delay}>
                         <motion.div 
-                          className="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors"
+                          className="flex gap-3 md:gap-4 p-3 md:p-4 rounded-xl hover:bg-gray-50 transition-colors"
                           whileHover={{ x: 5 }}
                         >
-                          <div className="w-14 h-14 bg-gradient-to-br from-[#0055CC] to-[#003d99] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                            <item.icon className="text-white" size={24} />
+                          <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#0055CC] to-[#003d99] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                            <item.icon className="text-white" size={22} />
                           </div>
                           <div>
-                            <h3 className="font-bold text-gray-900">{item.title}</h3>
-                            <p className="text-sm text-gray-600">{item.desc}</p>
+                            <h3 className="font-bold text-gray-900 text-sm md:text-base">{item.title}</h3>
+                            <p className="text-xs md:text-sm text-gray-600">{item.desc}</p>
                           </div>
                         </motion.div>
                       </ScrollReveal>
@@ -265,9 +242,9 @@ export default function Home() {
               </ScrollReveal>
               
               <ScrollReveal animation="fadeLeft" delay={0.2}>
-                <div className="relative">
+                <div className="relative mt-8 lg:mt-0">
                   <motion.div 
-                    className="aspect-square rounded-3xl overflow-hidden shadow-2xl"
+                    className="aspect-square rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -281,23 +258,23 @@ export default function Home() {
                   
                   {/* Floating badge */}
                   <motion.div 
-                    className="absolute -bottom-6 -left-6 bg-gradient-to-br from-[#0055CC] to-[#003d99] text-white p-6 rounded-2xl shadow-2xl"
+                    className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-gradient-to-br from-[#0055CC] to-[#003d99] text-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-2xl"
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 3, repeat: Infinity }}
                   >
-                    <div className="text-5xl font-bold">
+                    <div className="text-3xl md:text-5xl font-bold">
                       <AnimatedCounter value={25} suffix="+" />
                     </div>
-                    <div className="text-sm opacity-90">Years of Excellence</div>
+                    <div className="text-xs md:text-sm opacity-90">Years of Excellence</div>
                   </motion.div>
                   
-                  {/* Second floating element */}
+                  {/* Award icon */}
                   <motion.div 
-                    className="absolute -top-4 -right-4 bg-[#FF7F00] text-white p-4 rounded-xl shadow-xl"
+                    className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-[#FF7F00] text-white p-3 md:p-4 rounded-xl shadow-xl"
                     animate={{ y: [0, -8, 0], rotate: [0, 5, 0] }}
                     transition={{ duration: 4, repeat: Infinity }}
                   >
-                    <Award size={32} />
+                    <Award size={24} />
                   </motion.div>
                 </div>
               </ScrollReveal>
@@ -306,19 +283,19 @@ export default function Home() {
         </section>
 
         {/* Products Slider Section */}
-        <section className="py-24 bg-gray-50">
+        <section className="py-16 md:py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <ScrollReveal>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 md:mb-16">
                 <Badge variant="outline" className="mb-4 border-[#0055CC] text-[#0055CC]">
                   Our Products
                 </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
                   PET Blow Molding Machines
                 </h2>
-                <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg px-4">
                   From semi-automatic to fully automatic servo-driven systems, 
-                  we offer machines for every production scale and requirement.
+                  we offer machines for every production scale.
                 </p>
               </div>
             </ScrollReveal>
@@ -328,7 +305,7 @@ export default function Home() {
             </ScrollReveal>
             
             <ScrollReveal animation="fadeUp" delay={0.3}>
-              <div className="text-center mt-12">
+              <div className="text-center mt-8 md:mt-12">
                 <Link href="/products">
                   <Button size="lg" className="bg-[#0055CC] hover:bg-[#004399] text-white group">
                     View All Products
@@ -341,7 +318,7 @@ export default function Home() {
         </section>
 
         {/* Video Section */}
-        <section className="py-24 bg-gradient-to-br from-[#0055CC] to-[#003d99] relative overflow-hidden">
+        <section className="py-16 md:py-24 bg-gradient-to-br from-[#0055CC] to-[#003d99] relative overflow-hidden">
           {/* Background pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -351,32 +328,31 @@ export default function Home() {
           </div>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <ScrollReveal animation="fadeRight">
                 <div className="text-white">
-                  <Badge className="bg-[#FF7F00] text-white mb-6">Watch Demo</Badge>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  <Badge className="bg-[#FF7F00] text-white mb-4 md:mb-6">Watch Demo</Badge>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
                     See Our Machines in Action
                   </h2>
-                  <p className="text-gray-200 mb-8 text-lg">
+                  <p className="text-gray-200 mb-6 md:mb-8 text-base md:text-lg">
                     Watch how our state-of-the-art PET blow molding machines 
-                    deliver exceptional performance, precision, and reliability 
-                    in real production environments.
+                    deliver exceptional performance in real production.
                   </p>
-                  <ul className="space-y-4 mb-8">
+                  <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                     {[
-                      'High-speed bottle production up to 10,000 BPH',
-                      'Energy-efficient servo motor technology',
-                      'Precision temperature control system',
-                      'Automatic fault detection and recovery'
+                      'High-speed production up to 10,000 BPH',
+                      'Energy-efficient servo technology',
+                      'Precision temperature control',
+                      'Automatic fault detection'
                     ].map((item, index) => (
                       <ScrollReveal key={index} animation="fadeRight" delay={index * 0.1}>
                         <motion.li 
-                          className="flex items-center gap-3"
+                          className="flex items-center gap-3 text-sm md:text-base"
                           whileHover={{ x: 5 }}
                         >
-                          <div className="w-6 h-6 bg-[#FF7F00] rounded-full flex items-center justify-center">
-                            <CheckCircle className="text-white" size={14} />
+                          <div className="w-5 h-5 md:w-6 md:h-6 bg-[#FF7F00] rounded-full flex items-center justify-center flex-shrink-0">
+                            <CheckCircle className="text-white" size={12} />
                           </div>
                           <span>{item}</span>
                         </motion.li>
@@ -394,7 +370,7 @@ export default function Home() {
               
               <ScrollReveal animation="fadeLeft" delay={0.2}>
                 <motion.div 
-                  className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl"
+                  className="relative aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -412,12 +388,12 @@ export default function Home() {
         </section>
 
         {/* Clients Carousel */}
-        <section className="py-16 bg-white">
+        <section className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
             <ScrollReveal>
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-900">Trusted by Industry Leaders</h2>
-                <p className="text-gray-600 mt-2">Join 500+ satisfied clients worldwide</p>
+              <div className="text-center mb-6 md:mb-8">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900">Trusted by Industry Leaders</h2>
+                <p className="text-gray-600 mt-2 text-sm md:text-base">Join 500+ satisfied clients worldwide</p>
               </div>
             </ScrollReveal>
             <ClientCarousel />
@@ -425,18 +401,18 @@ export default function Home() {
         </section>
 
         {/* Global Presence with World Map */}
-        <section className="py-24 bg-gray-50">
+        <section className="py-16 md:py-24 bg-gray-50">
           <div className="container mx-auto px-4">
             <ScrollReveal>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 md:mb-16">
                 <Badge variant="outline" className="mb-4 border-[#0055CC] text-[#0055CC]">
                   Global Reach
                 </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
                   Our Global Presence
                 </h2>
-                <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                  We've successfully delivered and installed machines across 45+ countries, 
+                <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg px-4">
+                  We've successfully delivered machines across 45+ countries, 
                   earning the trust of clients worldwide.
                 </p>
               </div>
@@ -449,32 +425,32 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-24 bg-white">
+        <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-4">
             <ScrollReveal>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 md:mb-16">
                 <Badge variant="outline" className="mb-4 border-[#FF7F00] text-[#FF7F00]">
                   Testimonials
                 </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
                   What Our Clients Say
                 </h2>
               </div>
             </ScrollReveal>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
               {testimonials.map((testimonial, index) => (
                 <ScrollReveal key={testimonial.id} animation="fadeUp" delay={index * 0.1}>
                   <motion.div 
-                    className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 h-full"
+                    className="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100 h-full"
                     whileHover={{ y: -10, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)' }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="flex gap-1 mb-4">
+                    <div className="flex gap-1 mb-3 md:mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <motion.svg 
                           key={i} 
-                          className="w-5 h-5 text-yellow-400 fill-current" 
+                          className="w-4 h-4 md:w-5 md:h-5 text-yellow-400 fill-current" 
                           viewBox="0 0 20 20"
                           initial={{ opacity: 0, scale: 0 }}
                           whileInView={{ opacity: 1, scale: 1 }}
@@ -484,14 +460,14 @@ export default function Home() {
                         </motion.svg>
                       ))}
                     </div>
-                    <p className="text-gray-600 mb-6 italic text-lg">"{testimonial.content}"</p>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#0055CC] to-[#003d99] rounded-full flex items-center justify-center text-white font-bold">
+                    <p className="text-gray-600 mb-4 md:mb-6 italic text-sm md:text-lg">"{testimonial.content}"</p>
+                    <div className="flex items-center gap-3 md:gap-4">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#0055CC] to-[#003d99] rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
                         {testimonial.name.charAt(0)}
                       </div>
                       <div>
-                        <div className="font-bold text-gray-900">{testimonial.name}</div>
-                        <div className="text-sm text-gray-500">{testimonial.role}, {testimonial.company}</div>
+                        <div className="font-bold text-gray-900 text-sm md:text-base">{testimonial.name}</div>
+                        <div className="text-xs md:text-sm text-gray-500">{testimonial.role}, {testimonial.company}</div>
                       </div>
                     </div>
                   </motion.div>
@@ -502,40 +478,40 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-gradient-to-r from-[#0055CC] to-[#003d99] relative overflow-hidden">
+        <section className="py-16 md:py-24 bg-gradient-to-r from-[#0055CC] to-[#003d99] relative overflow-hidden">
           {/* Animated background elements */}
           <motion.div
-            className="absolute top-10 left-10 w-64 h-64 bg-white/5 rounded-full blur-3xl"
+            className="absolute top-10 left-10 w-40 md:w-64 h-40 md:h-64 bg-white/5 rounded-full blur-3xl"
             animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 5, repeat: Infinity }}
           />
           <motion.div
-            className="absolute bottom-10 right-10 w-96 h-96 bg-[#FF7F00]/10 rounded-full blur-3xl"
+            className="absolute bottom-10 right-10 w-60 md:w-96 h-60 md:h-96 bg-[#FF7F00]/10 rounded-full blur-3xl"
             animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 5, repeat: Infinity, delay: 1 }}
           />
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <ScrollReveal animation="fadeRight">
-                <div className="text-white">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <div className="text-white text-center lg:text-left">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
                     Ready to Start Your PET Bottle Manufacturing Journey?
                   </h2>
-                  <p className="text-gray-200 mb-8 text-lg">
+                  <p className="text-gray-200 mb-6 md:mb-8 text-base md:text-lg">
                     Get in touch with our experts for a customized solution that fits 
                     your production requirements and budget.
                   </p>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                     <Link href="/contact">
-                      <Button size="lg" className="bg-[#FF7F00] hover:bg-[#e67300] text-white group">
+                      <Button size="lg" className="w-full sm:w-auto bg-[#FF7F00] hover:bg-[#e67300] text-white group">
                         Get Free Consultation
                         <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </Link>
                     <a href={`tel:${companyInfo.phone}`}>
-                      <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[#0055CC]">
-                        Call Now: {companyInfo.phone}
+                      <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#0055CC]">
+                        Call: {companyInfo.phone}
                       </Button>
                     </a>
                   </div>
@@ -544,11 +520,11 @@ export default function Home() {
               
               <ScrollReveal animation="fadeLeft" delay={0.2}>
                 <motion.div 
-                  className="bg-white rounded-2xl p-8 shadow-2xl"
+                  className="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-2xl"
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Quick Enquiry</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Quick Enquiry</h3>
                   <EnquiryForm compact />
                 </motion.div>
               </ScrollReveal>
