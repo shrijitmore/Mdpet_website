@@ -38,13 +38,128 @@ async function handleRoute(request, { params }) {
   try {
     const db = await connectToMongo()
 
-    // Root endpoint - GET /api/root (since /api/ is not accessible with catch-all)
-    if (route === '/root' && method === 'GET') {
-      return handleCORS(NextResponse.json({ message: "Hello World" }))
+    // Root endpoint - GET /api/
+    if ((route === '/' || route === '/root') && method === 'GET') {
+      return handleCORS(NextResponse.json({ 
+        message: "MD PET API",
+        version: "1.0.0",
+        endpoints: [
+          "GET /api/ - API info",
+          "POST /api/enquiry - Submit enquiry",
+          "GET /api/enquiries - Get all enquiries"
+        ]
+      }))
     }
-    // Root endpoint - GET /api/root (since /api/ is not accessible with catch-all)
-    if (route === '/' && method === 'GET') {
-      return handleCORS(NextResponse.json({ message: "Hello World" }))
+
+    // Enquiry endpoint - POST /api/enquiry
+    if (route === '/enquiry' && method === 'POST') {
+      const body = await request.json()
+      
+      // Validate required fields
+      if (!body.name || !body.email || !body.phone || !body.message) {
+        return handleCORS(NextResponse.json(
+          { error: "Name, email, phone, and message are required" }, 
+          { status: 400 }
+        ))
+      }
+
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(body.email)) {
+        return handleCORS(NextResponse.json(
+          { error: "Invalid email format" }, 
+          { status: 400 }
+        ))
+      }
+
+      const enquiry = {
+        id: uuidv4(),
+        name: body.name,
+        email: body.email,
+        phone: body.phone,
+        company: body.company || '',
+        product: body.product || 'general',
+        message: body.message,
+        status: 'new',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+
+      await db.collection('enquiries').insertOne(enquiry)
+      
+      // Remove MongoDB _id from response
+      const { _id, ...cleanEnquiry } = enquiry
+      
+      return handleCORS(NextResponse.json({
+        success: true,
+        message: "Enquiry submitted successfully. Our team will contact you within 24 hours.",
+        data: cleanEnquiry
+      }))
+    }
+
+    // Get all enquiries - GET /api/enquiries
+    if (route === '/enquiries' && method === 'GET') {
+      const enquiries = await db.collection('enquiries')
+        .find({})
+        .sort({ createdAt: -1 })
+        .limit(100)
+        .toArray()
+
+      // Remove MongoDB's _id field from response
+      const cleanedEnquiries = enquiries.map(({ _id, ...rest }) => rest)
+      
+      return handleCORS(NextResponse.json({
+        success: true,
+        count: cleanedEnquiries.length,
+        data: cleanedEnquiries
+      }))
+    }
+
+    // Get single enquiry - GET /api/enquiry/:id
+    if (route.startsWith('/enquiry/') && method === 'GET') {
+      const id = path[1]
+      const enquiry = await db.collection('enquiries').findOne({ id })
+      
+      if (!enquiry) {
+        return handleCORS(NextResponse.json(
+          { error: "Enquiry not found" }, 
+          { status: 404 }
+        ))
+      }
+      
+      const { _id, ...cleanEnquiry } = enquiry
+      return handleCORS(NextResponse.json({
+        success: true,
+        data: cleanEnquiry
+      }))
+    }
+
+    // Update enquiry status - PUT /api/enquiry/:id
+    if (route.startsWith('/enquiry/') && method === 'PUT') {
+      const id = path[1]
+      const body = await request.json()
+      
+      const result = await db.collection('enquiries').updateOne(
+        { id },
+        { 
+          $set: { 
+            status: body.status || 'contacted',
+            updatedAt: new Date()
+          } 
+        }
+      )
+      
+      if (result.matchedCount === 0) {
+        return handleCORS(NextResponse.json(
+          { error: "Enquiry not found" }, 
+          { status: 404 }
+        ))
+      }
+      
+      return handleCORS(NextResponse.json({
+        success: true,
+        message: "Enquiry updated successfully"
+      }))
     }
 
     // Status endpoints - POST /api/status
