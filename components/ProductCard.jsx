@@ -1,22 +1,33 @@
+'use client'
+
 import Link from 'next/link'
-import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { ArrowRight, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import AnimatedImage from './AnimatedImage'
 
 export default function ProductCard({ product }) {
   const isEco = product.category === 'Eco Series' || product.priceTier === 'Budget'
   
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden product-card border border-gray-100 group">
+    <motion.div 
+      className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 h-full"
+      whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0, 85, 204, 0.2)' }}
+      transition={{ duration: 0.3 }}
+    >
       {/* Image */}
       <div className="relative h-64 overflow-hidden bg-gray-100">
-        <Image
+        <AnimatedImage
           src={product.images[0]}
           alt={product.name}
           fill
-          className="object-cover group-hover:scale-110 transition-transform duration-500"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <motion.div 
+          className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors"
+          whileHover={{ opacity: 1 }}
         />
         <div className="absolute top-4 left-4 flex gap-2">
           {product.featured && (
@@ -62,12 +73,15 @@ export default function ProductCard({ product }) {
 
         {/* CTA */}
         <Link href={`/products/${product.slug}`}>
-          <Button variant="outline" className={`w-full transition ${isEco ? 'group-hover:bg-green-600 group-hover:text-white group-hover:border-green-600' : 'group-hover:bg-[#0055CC] group-hover:text-white group-hover:border-[#0055CC]'}`}>
+          <Button 
+            variant="outline" 
+            className={`w-full transition-all duration-300 ${isEco ? 'hover:bg-green-600 hover:text-white hover:border-green-600' : 'hover:bg-[#0055CC] hover:text-white hover:border-[#0055CC]'}`}
+          >
             View Details
             <ArrowRight size={16} className="ml-2" />
           </Button>
         </Link>
       </div>
-    </div>
+    </motion.div>
   )
 }
