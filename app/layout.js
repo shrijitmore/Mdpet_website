@@ -1,5 +1,6 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Preloader from '@/components/Preloader'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -65,6 +66,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#0055CC" />
       </head>
       <body className={`${inter.className} antialiased bg-white text-gray-900`}>
+        <Preloader />
         {children}
       </body>
     </html>
