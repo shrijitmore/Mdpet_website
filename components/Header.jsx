@@ -28,6 +28,7 @@ export default function Header() {
       submenu: [
         { name: 'Semi Automatic', href: '/products?category=semi-automatic' },
         { name: 'Fully Automatic', href: '/products?category=fully-automatic' },
+        { name: 'Eco Series', href: '/products?category=eco-series' },
         { name: 'Electra Series', href: '/products?category=electra-series' },
         { name: 'Moulds', href: '/products?category=moulds' },
         { name: 'Auxiliary Equipment', href: '/products?category=auxiliary' },
