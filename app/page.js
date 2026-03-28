@@ -9,7 +9,6 @@ import EnquiryForm from '@/components/EnquiryForm'
 import ScrollReveal from '@/components/ScrollReveal'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import AnimatedImage from '@/components/AnimatedImage'
-import ClientCarousel from '@/components/ClientCarousel'
 import WorldMap from '@/components/WorldMap'
 import ProductSlider from '@/components/ProductSlider'
 import Link from 'next/link'
@@ -307,19 +306,6 @@ export default function Home() {
         </section>
 
 
-
-        {/* Clients Carousel */}
-        <section className="py-12 md:py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <ScrollReveal>
-              <div className="text-center mb-6 md:mb-8">
-                <h2 className="text-xl md:text-2xl font-bold text-gray-900">Trusted by Industry Leaders</h2>
-                <p className="text-gray-600 mt-2 text-sm md:text-base">Supported by 50+ MSMEs and 100+ satisfied clients nationwide</p>
-              </div>
-            </ScrollReveal>
-            <ClientCarousel />
-          </div>
-        </section>
 
         {/* Global Presence with World Map */}
         <section className="py-16 md:py-24 bg-gray-50">
