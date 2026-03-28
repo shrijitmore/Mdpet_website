@@ -126,33 +126,7 @@ export default function GalleryPage() {
           </div>
         </section>
 
-        {/* Videos Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">
-              <Video className="inline mr-2" size={24} />
-              Videos
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {galleryVideos.map((video) => (
-                <div key={video.id} className="bg-white rounded-xl overflow-hidden shadow-lg">
-                  <div className="aspect-video">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.embedId}`}
-                      title={video.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-gray-900">{video.title}</h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* Lightbox */}
         <Dialog open={!!selectedImage} onOpenChange={closeLightbox}>

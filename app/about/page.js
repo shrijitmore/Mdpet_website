@@ -14,12 +14,12 @@ import { CheckCircle, Award, Users, Globe, Factory, Target, Eye, Lightbulb, Arro
 import { companyInfo } from '@/lib/data'
 
 const milestones = [
-  { year: '2000', title: 'Company Founded', desc: 'Started operations in Mumbai with a vision to revolutionize PET manufacturing in India' },
-  { year: '2005', title: 'First Export', desc: 'Successfully exported first machines to Middle East markets' },
-  { year: '2010', title: 'ISO Certification', desc: 'Achieved ISO 9001:2008 certification for quality management' },
-  { year: '2015', title: '1000+ Machines', desc: 'Crossed milestone of 1000+ machines installed globally' },
-  { year: '2020', title: 'Servo Technology', desc: 'Launched advanced all-electric servo machine series' },
-  { year: '2025', title: '45+ Countries', desc: 'Expanded presence to 45+ countries with 2500+ installations' }
+  { year: '2009', title: 'Company Founded', desc: 'Started operations in Vasai with a vision to revolutionize PET manufacturing in India' },
+  { year: '2012', title: 'First Distribution', desc: 'Successfully started distribution to multiple states' },
+  { year: '2016', title: 'ISO Certification', desc: 'Achieved ISO 9001:2008 certification for quality management' },
+  { year: '2019', title: '100+ Machines', desc: 'Crossed milestone of 100+ machines installed nationwide' },
+  { year: '2022', title: 'Servo Technology', desc: 'Launched advanced all-electric servo machine series' },
+  { year: '2025', title: '5+ States', desc: 'Expanded presence to 5+ states with 150+ installations' }
 ]
 
 export default function AboutPage() {
@@ -52,7 +52,7 @@ export default function AboutPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <AnimatedCounter value={25} suffix="+" /> Years of Excellence in PET Manufacturing
+                <AnimatedCounter value={15} suffix="+" /> Years of Excellence in PET Manufacturing
               </motion.h1>
               <motion.p 
                 className="text-xl text-gray-200"
@@ -103,7 +103,7 @@ export default function AboutPage() {
                     transition={{ duration: 3, repeat: Infinity }}
                   >
                     <div className="text-4xl font-bold">Since</div>
-                    <div className="text-5xl font-bold">2000</div>
+                    <div className="text-5xl font-bold">2009</div>
                   </motion.div>
                 </div>
               </ScrollReveal>
@@ -117,21 +117,21 @@ export default function AboutPage() {
                     A Legacy of <span className="text-[#0055CC]">Innovation</span> & Quality
                   </h2>
                   <p className="text-gray-600 mb-6 text-lg">
-                    Founded in 2000 in Mumbai, MD PET began with a clear vision: to become 
+                    Founded in 2009 in Vasai, MD PET began with a clear vision: to become 
                     India's most trusted name in PET blow molding technology. Over the past 
-                    25+ years, we have grown from a small manufacturing unit to a global 
+                    15+ years, we have grown from a small manufacturing unit to a nationwide 
                     leader in the industry.
                   </p>
                   <p className="text-gray-600 mb-8 text-lg">
                     Our journey has been marked by continuous innovation, quality excellence, 
                     and a deep commitment to customer satisfaction. Today, we proudly serve 
-                    clients across 45+ countries with a portfolio of world-class machines.
+                    clients across 5+ states with a portfolio of world-class machines.
                   </p>
                   <div className="grid grid-cols-2 gap-6">
                     {[
-                      { value: 2500, suffix: '+', label: 'Machines Installed' },
-                      { value: 500, suffix: '+', label: 'Happy Clients' },
-                      { value: 45, suffix: '+', label: 'Countries' },
+                      { value: 150, suffix: '+', label: 'Machines Installed' },
+                      { value: 100, suffix: '+', label: 'Happy Clients' },
+                      { value: 5, suffix: '+', label: 'States' },
                       { value: 100, suffix: '+', label: 'Team Members' }
                     ].map((stat, index) => (
                       <ScrollReveal key={index} animation="fadeUp" delay={index * 0.1}>

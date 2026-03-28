@@ -139,7 +139,7 @@ export default function Preloader() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
           >
-            25+ Years of Manufacturing Excellence
+            15+ Years of Manufacturing Excellence
           </motion.p>
         </motion.div>
       )}

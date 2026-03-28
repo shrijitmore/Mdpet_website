@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 mb-6">
-              India's leading manufacturer of PET Blow Molding Machines with 25+ years of expertise in providing complete plant solutions.
+              India's leading manufacturer of PET Blow Molding Machines with 15+ years of expertise in providing complete plant solutions.
             </p>
             <div className="flex gap-4">
               <a href={companyInfo.socialMedia.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#0055CC] transition">

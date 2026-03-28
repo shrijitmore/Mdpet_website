@@ -55,7 +55,7 @@ export default function Header() {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <span>25+ Years of Excellence in PET Manufacturing</span>
+            <span>15+ Years of Excellence in PET Manufacturing</span>
           </div>
         </div>
       </div>

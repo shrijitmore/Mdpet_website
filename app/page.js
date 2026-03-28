@@ -44,7 +44,7 @@ export default function Home() {
             {/* Fallback Image */}
             <div className="absolute inset-0">
               <AnimatedImage
-                src="https://images.pexels.com/photos/34222005/pexels-photo-34222005.jpeg"
+                src="https://images.unsplash.com/photo-1603514457784-db13e512fd56?q=80&w=2670&auto=format&fit=crop"
                 alt="Industrial Manufacturing"
                 fill
                 className="object-cover"
@@ -52,18 +52,7 @@ export default function Home() {
               />
             </div>
             
-            {/* Video */}
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              onLoadedData={() => setVideoLoaded(true)}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-              poster="https://images.pexels.com/photos/34222005/pexels-photo-34222005.jpeg"
-            >
-              <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-            </video>
+            {/* Video removed */}
             
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#0055CC]/95 via-[#0055CC]/85 to-[#003d99]/75" />
@@ -107,7 +96,7 @@ export default function Home() {
               >
                 <Badge className="bg-[#FF7F00] text-white text-xs md:text-sm px-3 md:px-4 py-1.5 md:py-2 inline-flex items-center gap-2">
                   <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                  25+ Years of Excellence
+                  15+ Years of Excellence
                 </Badge>
               </motion.div>
               
@@ -164,10 +153,10 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
                 {[
-                  { value: 25, suffix: '+', label: 'Years Experience' },
-                  { value: 2500, suffix: '+', label: 'Machines Installed' },
-                  { value: 45, suffix: '+', label: 'Countries Served' },
-                  { value: 500, suffix: '+', label: 'Happy Clients' }
+                  { value: 15, suffix: '+', label: 'Years Experience' },
+                  { value: 150, suffix: '+', label: 'Machines Installed' },
+                  { value: 5, suffix: '+', label: 'States Served' },
+                  { value: 100, suffix: '+', label: 'Happy Clients' }
                 ].map((stat, index) => (
                   <motion.div 
                     key={index} 
@@ -210,14 +199,14 @@ export default function Home() {
                     <span className="text-[#0055CC]">Best Choice?</span>
                   </h2>
                   <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
-                    With over 25 years of expertise in PET blow molding technology, 
+                    With over 15 years of expertise in PET blow molding technology, 
                     we deliver precision-engineered machines that set industry standards 
                     for performance, efficiency, and reliability.
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                     {[
-                      { icon: Factory, title: 'Industry Expertise', desc: '25+ years of manufacturing excellence', delay: 0 },
+                      { icon: Factory, title: 'Industry Expertise', desc: '15+ years of manufacturing excellence', delay: 0 },
                       { icon: Zap, title: 'Advanced Technology', desc: 'Latest servo-driven systems', delay: 0.1 },
                       { icon: Shield, title: 'Quality Assurance', desc: 'ISO certified manufacturing', delay: 0.2 },
                       { icon: Headphones, title: '24/7 Support', desc: 'Round-the-clock technical assistance', delay: 0.3 }
@@ -249,7 +238,7 @@ export default function Home() {
                     transition={{ duration: 0.3 }}
                   >
                     <AnimatedImage
-                      src="https://images.pexels.com/photos/29842696/pexels-photo-29842696.jpeg"
+                      src="https://images.pexels.com/photos/10376368/pexels-photo-10376368.jpeg"
                       alt="Manufacturing Excellence"
                       fill
                       className="object-cover"
@@ -263,7 +252,7 @@ export default function Home() {
                     transition={{ duration: 3, repeat: Infinity }}
                   >
                     <div className="text-3xl md:text-5xl font-bold">
-                      <AnimatedCounter value={25} suffix="+" />
+                      <AnimatedCounter value={15} suffix="+" />
                     </div>
                     <div className="text-xs md:text-sm opacity-90">Years of Excellence</div>
                   </motion.div>
@@ -317,75 +306,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Video Section */}
-        <section className="py-16 md:py-24 bg-gradient-to-br from-[#0055CC] to-[#003d99] relative overflow-hidden">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-              backgroundSize: '40px 40px'
-            }} />
-          </div>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-              <ScrollReveal animation="fadeRight">
-                <div className="text-white">
-                  <Badge className="bg-[#FF7F00] text-white mb-4 md:mb-6">Watch Demo</Badge>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-                    See Our Machines in Action
-                  </h2>
-                  <p className="text-gray-200 mb-6 md:mb-8 text-base md:text-lg">
-                    Watch how our state-of-the-art PET blow molding machines 
-                    deliver exceptional performance in real production.
-                  </p>
-                  <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8">
-                    {[
-                      'High-speed production up to 10,000 BPH',
-                      'Energy-efficient servo technology',
-                      'Precision temperature control',
-                      'Automatic fault detection'
-                    ].map((item, index) => (
-                      <ScrollReveal key={index} animation="fadeRight" delay={index * 0.1}>
-                        <motion.li 
-                          className="flex items-center gap-3 text-sm md:text-base"
-                          whileHover={{ x: 5 }}
-                        >
-                          <div className="w-5 h-5 md:w-6 md:h-6 bg-[#FF7F00] rounded-full flex items-center justify-center flex-shrink-0">
-                            <CheckCircle className="text-white" size={12} />
-                          </div>
-                          <span>{item}</span>
-                        </motion.li>
-                      </ScrollReveal>
-                    ))}
-                  </ul>
-                  <Link href="/gallery">
-                    <Button className="bg-[#FF7F00] hover:bg-[#e67300] text-white group">
-                      View Gallery
-                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-                    </Button>
-                  </Link>
-                </div>
-              </ScrollReveal>
-              
-              <ScrollReveal animation="fadeLeft" delay={0.2}>
-                <motion.div 
-                  className="relative aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <iframe
-                    src="https://www.youtube.com/embed/NPHnMvt4Cbs"
-                    title="MD PET Machine Demo"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                  />
-                </motion.div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
+
 
         {/* Clients Carousel */}
         <section className="py-12 md:py-16 bg-white">
@@ -393,7 +314,7 @@ export default function Home() {
             <ScrollReveal>
               <div className="text-center mb-6 md:mb-8">
                 <h2 className="text-xl md:text-2xl font-bold text-gray-900">Trusted by Industry Leaders</h2>
-                <p className="text-gray-600 mt-2 text-sm md:text-base">Join 500+ satisfied clients worldwide</p>
+                <p className="text-gray-600 mt-2 text-sm md:text-base">Supported by 50+ MSMEs and 100+ satisfied clients nationwide</p>
               </div>
             </ScrollReveal>
             <ClientCarousel />
@@ -406,14 +327,14 @@ export default function Home() {
             <ScrollReveal>
               <div className="text-center mb-10 md:mb-16">
                 <Badge variant="outline" className="mb-4 border-[#0055CC] text-[#0055CC]">
-                  Global Reach
+                  India Reach
                 </Badge>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
-                  Our Global Presence
+                  Our Presence in India
                 </h2>
                 <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg px-4">
-                  We've successfully delivered machines across 45+ countries, 
-                  earning the trust of clients worldwide.
+                  We've successfully delivered machines across 5+ states, 
+                  earning the trust of clients nationwide.
                 </p>
               </div>
             </ScrollReveal>

@@ -12,20 +12,18 @@ import {
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
 
-// Marker locations with coordinates
+// Marker locations with coordinates for India
 const markers = [
-  { name: "India (HQ)", coordinates: [78.9629, 20.5937], isHQ: true, countries: "HQ" },
-  { name: "North America", coordinates: [-100.0, 45.0], countries: 5 },
-  { name: "South America", coordinates: [-58.0, -15.0], countries: 8 },
-  { name: "Europe", coordinates: [15.0, 50.0], countries: 12 },
-  { name: "Middle East", coordinates: [45.0, 28.0], countries: 10 },
-  { name: "Africa", coordinates: [20.0, 5.0], countries: 15 },
-  { name: "Southeast Asia", coordinates: [105.0, 15.0], countries: 8 },
-  { name: "Oceania", coordinates: [135.0, -25.0], countries: 3 },
+  { name: "Maharashtra (HQ)", coordinates: [73.0, 19.0], isHQ: true, details: "HQ" },
+  { name: "Gujarat", coordinates: [71.1924, 22.2587], details: "Installations" },
+  { name: "Karnataka", coordinates: [75.7139, 15.3173], details: "Installations" },
+  { name: "Tamil Nadu", coordinates: [78.6569, 11.1271], details: "Installations" },
+  { name: "Delhi NCR", coordinates: [77.2090, 28.6139], details: "Installations" },
+  { name: "Telangana", coordinates: [79.0193, 18.1124], details: "Installations" }
 ]
 
 // India HQ coordinates for connection lines
-const indiaCoords = [78.9629, 20.5937]
+const indiaCoords = [73.0, 19.0]
 
 function WorldMap() {
   const [activeMarker, setActiveMarker] = useState(null)
@@ -35,8 +33,8 @@ function WorldMap() {
       <ComposableMap
         projection="geoMercator"
         projectionConfig={{
-          scale: 130,
-          center: [40, 20]
+          scale: 900,
+          center: [80, 22]
         }}
         style={{ width: "100%", height: "auto" }}
       >
@@ -147,7 +145,7 @@ function WorldMap() {
           {marker.isHQ ? (
             <div className="text-xs text-[#FF7F00] font-semibold">🏭 Manufacturing HQ</div>
           ) : (
-            <div className="text-xs text-[#0055CC] font-semibold">{marker.countries} Countries</div>
+            <div className="text-xs text-[#0055CC] font-semibold">{marker.details}</div>
           )}
         </motion.div>
       ))}
@@ -159,8 +157,8 @@ function WorldMap() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        <div className="text-3xl font-bold text-[#0055CC]">45+</div>
-        <div className="text-sm text-gray-600">Countries Served</div>
+        <div className="text-3xl font-bold text-[#0055CC]">5+</div>
+        <div className="text-sm text-gray-600">States Served</div>
         <div className="flex gap-1 mt-2">
           {[...Array(5)].map((_, i) => (
             <motion.div 
@@ -183,27 +181,27 @@ function WorldMap() {
       >
         <div className="flex items-center gap-2 text-xs">
           <div className="w-3 h-3 bg-[#0055CC] rounded" />
-          <span className="text-gray-600">Export Countries</span>
+          <span className="text-gray-600">Installations</span>
         </div>
         <div className="flex items-center gap-2 text-xs mt-1.5">
           <div className="w-3 h-3 bg-[#FF7F00] rounded" />
-          <span className="text-gray-600">India - HQ</span>
+          <span className="text-gray-600">Maharashtra - HQ</span>
         </div>
         <div className="flex items-center gap-2 text-xs mt-1.5">
           <div className="w-3 h-3 border-2 border-dashed border-[#FF7F00] rounded" />
-          <span className="text-gray-600">Trade Routes</span>
+          <span className="text-gray-600">Supply Routes</span>
         </div>
       </motion.div>
 
       {/* HQ Label */}
       <motion.div
         className="absolute bg-gradient-to-r from-[#FF7F00] to-[#e67300] text-white px-4 py-2 rounded-full text-sm font-bold shadow-xl"
-        style={{ left: '62%', top: '42%' }}
+        style={{ left: '42%', top: '55%' }}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 1 }}
       >
-        🇮🇳 MD PET India
+        🇮🇳 MD PET HQ
       </motion.div>
     </div>
   )
